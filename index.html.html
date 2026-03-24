@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benchwarmers Draft Points</title>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=DM+Mono:wght@400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0d12;
+    --surface: #111620;
+    --card: #161c28;
+    --border: #1e2a3a;
+    --accent: #f5c518;
+    --accent2: #e8f53c;
+    --red: #ff4545;
+    --green: #3cffa0;
+    --blue: #3ca8ff;
+    --text: #e8edf5;
+    --muted: #5a6a82;
+    --sport1: #ff6b35;
+    --sport2: #3ca8ff;
+    --sport3: #a259ff;
+    --sport4: #3cffa0;
+    --sport5: #f5c518;
+    --sport6: #ff4545;
+    --sport7: #cbd5e1;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(245,197,24,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,197,24,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  /* Header */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .league-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    border: 1px solid rgba(245,197,24,0.3);
+    padding: 4px 14px;
+    border-radius: 2px;
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 10vw, 96px);
+    letter-spacing: 4px;
+    line-height: 0.9;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  /* Sport tabs */
+  .sport-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s 0.15s ease both;
+  }
+
+  .tab {
+    padding: 8px 18px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tab::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--tab-color, var(--accent));
+    transform: scaleX(0);
+    transition: transform 0.2s;
+  }
+
+  .tab:hover { color: var(--text); border-color: var(--tab-color, var(--accent)); }
+  .tab:hover::before { transform: scaleX(1); }
+  .tab.active { color: var(--text); border-color: var(--tab-color, var(--accent)); background: rgba(255,255,255,0.04); }
+  .tab.active::before { transform: scaleX(1); }
+
+  /* Leaderboard */
+  .leaderboard {
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s 0.25s ease both;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .lb-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-bottom: 6px;
+    transition: all 0.25s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .lb-row::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--row-accent, var(--muted));
+    transition: width 0.3s;
+  }
+
+  .lb-row:hover { border-color: rgba(245,197,24,0.3); background: rgba(245,197,24,0.03); }
+  .lb-row:hover::before { width: 5px; }
+
+  .lb-row.rank-1 { --row-accent: var(--accent); border-color: rgba(245,197,24,0.25); }
+  .lb-row.rank-2 { --row-accent: #c0c0c0; }
+  .lb-row.rank-3 { --row-accent: #cd7f32; }
+
+  .lb-rank {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--row-accent, var(--muted));
+    width: 40px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .lb-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    flex: 1;
+  }
+
+  .lb-bar-wrap {
+    flex: 2;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .lb-bar {
+    height: 100%;
+    background: var(--row-accent, var(--muted));
+    border-radius: 3px;
+    transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .lb-score {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--row-accent, var(--text));
+    width: 60px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .lb-sport-dots {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .sport-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: rgba(0,0,0,0.8);
+    font-weight: bold;
+    opacity: 0.35;
+    transition: opacity 0.2s;
+  }
+  .sport-dot.has-points { opacity: 1; }
+
+  /* Edit Panel */
+  .edit-panel {
+    display: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px;
+    margin-bottom: 6px;
+    animation: expandDown 0.3s ease;
+  }
+  .edit-panel.open { display: block; }
+
+  @keyframes expandDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .edit-player-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--accent);
+    margin-bottom: 24px;
+    letter-spacing: 2px;
+  }
+
+  .sport-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .sport-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sport-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--sport-color, var(--accent));
+  }
+
+  .sport-name {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sport-color, var(--accent));
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+
+  .field-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .field label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .field input, .field select {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    padding: 7px 10px;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .field input:focus, .field select:focus {
+    border-color: var(--accent);
+  }
+
+  .field input[type="number"] { -moz-appearance: textfield; }
+  .field input[type="number"]::-webkit-outer-spin-button,
+  .field input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+  .sport-total {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sport-total label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .sport-total-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: var(--sport-color, var(--accent));
+  }
+
+  /* Scoring guide */
+  .guide-section {
+    margin-top: 40px;
+    animation: fadeUp 0.6s 0.35s ease both;
+  }
+
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .guide-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .guide-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--sport-color, var(--accent));
+  }
+
+  .guide-sport {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--sport-color, var(--accent));
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .guide-rule {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--muted);
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .guide-rule:last-child { border-bottom: none; }
+  .guide-rule span.pts {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* Buttons */
+  .save-btn {
+    display: block;
+    margin: 20px 0 0;
+    padding: 12px 32px;
+    background: var(--accent);
+    color: #000;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 3px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+  .save-btn:hover { background: var(--accent2); transform: translateY(-1px); }
+  .save-btn:active { transform: translateY(0); }
+  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-outline:hover { background: var(--surface); border-color: var(--accent); }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .stat-pill {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 10px 20px;
+    text-align: center;
+  }
+
+  .stat-pill .stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-pill .stat-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .hint {
+    font-size: 10px;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  select option { background: var(--card); }
+  
+  /* Export/Import Actions */
+  .header-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="league-tag">⚡ Fantasy Draft League</div>
+    <h1>Benchwarmers</h1>
+    <div class="subtitle">2025 Draft Point Tracker</div>
+    <div class="header-actions">
+        <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importData(event)">
+        <button class="save-btn btn-outline" style="margin: 0; padding: 8px 16px; font-size: 14px;" onclick="document.getElementById('importFile').click()">Import JSON</button>
+        <button class="save-btn" style="margin: 0; padding: 8px 16px; font-size: 14px;" onclick="exportData()">Export JSON</button>
+    </div>
+  </header>
+
+  <div class="stats-bar" id="statsBar"></div>
+
+  <div class="sport-tabs" id="sportTabs">
+    <button class="tab active" data-filter="all" style="--tab-color: var(--accent)">All Sports</button>
+    <button class="tab" data-filter="march_madness" style="--tab-color: var(--sport1)">🏀 March Madness</button>
+    <button class="tab" data-filter="masters" style="--tab-color: var(--sport2)">⛳ The Masters</button>
+    <button class="tab" data-filter="kentucky_derby" style="--tab-color: var(--sport3)">🐎 Kentucky Derby</button>
+    <button class="tab" data-filter="nhl" style="--tab-color: var(--sport4)">🏒 NHL Playoffs</button>
+    <button class="tab" data-filter="nba" style="--tab-color: var(--sport5)">🏆 NBA Finals</button>
+    <button class="tab" data-filter="world_cup" style="--tab-color: var(--sport6)">⚽ World Cup</button>
+    <button class="tab" data-filter="draft_day" style="--tab-color: var(--sport7)">🎉 Draft Day</button>
+  </div>
+
+  <div class="leaderboard" id="leaderboard">
+    <div class="section-label">Live Standings — click a player to edit</div>
+    <div class="hint">Changes save automatically to your browser</div>
+    <div id="lbRows"></div>
+  </div>
+
+  <div class="guide-section">
+    <div class="section-label">Scoring Guide</div>
+    <div class="guide-grid" id="guideGrid"></div>
+  </div>
+</div>
+
+<script>
+const SPORTS = [
+  {
+    key: 'march_madness',
+    name: 'March Madness',
+    icon: '🏀',
+    color: 'var(--sport1)',
+    fields: [
+      { key: 'placement', label: 'Placement (1=1st, 10=10th)', type: 'select', options: ['0 (None)', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'] },
+      { key: 'upsets', label: 'Upset Credits', type: 'number' },
+    ],
+    scoring: [
+      { label: '1st Place', pts: '10' }, 
+      { label: '10th Place', pts: '1' },
+      { label: 'Per correct double-digit upset', pts: '+1' },
+    ],
+    calcTotal: (d) => {
+      let place = parseInt(d.placement) || 0;
+      let placePts = (place >= 1 && place <= 10) ? (11 - place) : 0;
+      return placePts + (parseInt(d.upsets) || 0);
+    }
+  },
+  {
+    key: 'masters',
+    name: 'The Masters',
+    icon: '⛳',
+    color: 'var(--sport2)',
+    fields: [
+      { key: 'placement', label: 'Combined Placement (1=1st, 10=10th)', type: 'select', options: ['0 (None)', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'] },
+      { key: 'cut', label: 'Longshot Made Cut?', type: 'select', options: ['No', 'Yes'] },
+      { key: 'top10', label: 'Longshot Top 10?', type: 'select', options: ['No', 'Yes'] },
+      { key: 'hio', label: 'Total Hole-in-Ones', type: 'number' }
+    ],
+    scoring: [
+      { label: 'Combined Finish Placement', pts: '10 down to 1' },
+      { label: 'Longshot makes cut', pts: '+2' },
+      { label: 'Longshot Top 10', pts: '+5' },
+      { label: 'Per Hole-in-One', pts: '+5' }
+    ],
+    calcTotal: (d) => {
+      let place = parseInt(d.placement) || 0;
+      let placePts = (place >= 1 && place <= 10) ? (11 - place) : 0;
+      let cutPts = d.cut === 'Yes' ? 2 : 0;
+      let top10Pts = d.top10 === 'Yes' ? 5 : 0;
+      let hioPts = (parseInt(d.hio) || 0) * 5;
+      return placePts + cutPts + top10Pts + hioPts;
+    }
+  },
+  {
+    key: 'kentucky_derby',
+    name: 'Kentucky Derby',
+    icon: '🐎',
+    color: 'var(--sport3)',
+    fields: [
+      { key: 'finish', label: 'Horse Finish', type: 'select', options: ['Unplaced', '1st', '2nd', '3rd'] },
+      { key: 'odds', label: 'Morning-Line Odds', type: 'number' },
+    ],
+    scoring: [
+      { label: '1st Place', pts: '10 + (Odds/2)' },
+      { label: '2nd Place', pts: '7 + (Odds/2)' },
+      { label: '3rd Place', pts: '5 + (Odds/2)' }
+    ],
+    calcTotal: (d) => {
+      const finish = d.finish;
+      const odds = parseFloat(d.odds) || 0;
+      if (finish === '1st') return 10 + (odds / 2);
+      if (finish === '2nd') return 7 + (odds / 2);
+      if (finish === '3rd') return 5 + (odds / 2);
+      return 0;
+    }
+  },
+  {
+    key: 'nhl',
+    name: 'NHL Playoffs',
+    icon: '🏒',
+    color: 'var(--sport4)',
+    fields: [
+      { key: 'placement', label: 'Placement (1=1st, 10=10th)', type: 'select', options: ['0 (None)', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'] },
+      { key: 'otGames', label: 'OT Games Played', type: 'number' },
+    ],
+    scoring: [
+      { label: '1st Place', pts: '10' }, 
+      { label: '10th Place', pts: '1' },
+      { label: 'Per OT game played', pts: '+1' },
+    ],
+    calcTotal: (d) => {
+      let place = parseInt(d.placement) || 0;
+      let placePts = (place >= 1 && place <= 10) ? (11 - place) : 0;
+      return placePts + (parseInt(d.otGames) || 0);
+    }
+  },
+  {
+    key: 'nba',
+    name: 'NBA Finals',
+    icon: '🏆',
+    color: 'var(--sport5)',
+    fields: [
+      { key: 'placement', label: 'Placement (1=1st, 10=10th)', type: 'select', options: ['0 (None)', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'] },
+      { key: 'comebacks', label: 'Series Comebacks', type: 'number' },
+    ],
+    scoring: [
+      { label: '1st Place', pts: '10' }, 
+      { label: '10th Place', pts: '1' },
+      { label: 'Per series comeback', pts: '+3' },
+    ],
+    calcTotal: (d) => {
+      let place = parseInt(d.placement) || 0;
+      let placePts = (place >= 1 && place <= 10) ? (11 - place) : 0;
+      return placePts + ((parseInt(d.comebacks) || 0) * 3);
+    }
+  },
+  {
+    key: 'world_cup',
+    name: 'World Cup',
+    icon: '⚽',
+    color: 'var(--sport6)',
+    fields: [
+      { key: 'team', label: 'Pot 1 Team Assigned', type: 'text' },
+      { key: 'wins', label: 'Games Won', type: 'number' },
+    ],
+    scoring: [
+      { label: 'Per game won by assigned team', pts: '+1' },
+    ],
+    calcTotal: (d) => {
+      return parseInt(d.wins) || 0;
+    }
+  },
+  {
+    key: 'draft_day',
+    name: 'Draft Day',
+    icon: '🎉',
+    color: 'var(--sport7)',
+    fields: [
+      { key: 'placement', label: 'Final Event Placement', type: 'select', options: ['0 (None)', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'] },
+    ],
+    scoring: [
+      { label: '1st Place', pts: '10' }, 
+      { label: '10th Place', pts: '1' },
+    ],
+    calcTotal: (d) => {
+      let place = parseInt(d.placement) || 0;
+      return (place >= 1 && place <= 10) ? (11 - place) : 0;
+    }
+  }
+];
+
+const PLAYERS = ['Blake', 'Branden', 'Braxton', 'Brody', 'Cash', 'Daxton', 'Jaxon', 'Jayden', 'Porter', 'Steven'];
+
+// Load or init data
+let data = JSON.parse(localStorage.getItem('benchwarmers_data_v2') || 'null') || {};
+PLAYERS.forEach(p => {
+  if (!data[p]) data[p] = {};
+  SPORTS.forEach(s => {
+    if (!data[p][s.key]) data[p][s.key] = {};
+  });
+});
+
+let activeFilter = 'all';
+let openPlayer = null;
+
+function saveData() {
+  localStorage.setItem('benchwarmers_data_v2', JSON.stringify(data));
+}
+
+function getPlayerTotal(player, sportFilter) {
+  let total = 0;
+  SPORTS.forEach(sport => {
+    if (sportFilter === 'all' || sportFilter === sport.key) {
+      total += sport.calcTotal(data[player][sport.key]);
+    }
+  });
+  return total;
+}
+
+function getSportTotal(player, sportKey) {
+  const sport = SPORTS.find(s => s.key === sportKey);
+  return sport ? sport.calcTotal(data[player][sportKey]) : 0;
+}
+
+function renderStats() {
+  const totals = PLAYERS.map(p => getPlayerTotal(p, 'all'));
+  const max = Math.max(...totals);
+  const totalPts = totals.reduce((a, b) => a + b, 0);
+  const leader = PLAYERS[totals.indexOf(max)];
+  const sportsActive = SPORTS.filter(s => PLAYERS.some(p => getSportTotal(p, s.key) > 0)).length;
+
+  document.getElementById('statsBar').innerHTML = `
+    <div class="stat-pill"><div class="stat-val">${PLAYERS.length}</div><div class="stat-label">Players</div></div>
+    <div class="stat-pill"><div class="stat-val">${SPORTS.length}</div><div class="stat-label">Events</div></div>
+    <div class="stat-pill"><div class="stat-val">${sportsActive}</div><div class="stat-label">Scored Events</div></div>
+    <div class="stat-pill"><div class="stat-val">${totalPts}</div><div class="stat-label">Total Points</div></div>
+    <div class="stat-pill"><div class="stat-val" style="color:var(--accent)">${totalPts > 0 ? leader : '--'}</div><div class="stat-label">Current Leader</div></div>
+  `;
+}
+
+function renderLeaderboard() {
+  const scored = PLAYERS.map(p => ({ name: p, total: getPlayerTotal(p, activeFilter) }));
+  scored.sort((a, b) => b.total - a.total);
+  const max = Math.max(...scored.map(s => s.total), 1);
+
+  const container = document.getElementById('lbRows');
+  container.innerHTML = '';
+
+  scored.forEach((entry, i) => {
+    const rankClass = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : '';
+    const rankLabel = i === 0 ? '1' : i === 1 ? '2' : i === 2 ? '3' : i + 1;
+
+    // Sport dots
+    const dots = SPORTS.map(s => {
+      const pts = getSportTotal(entry.name, s.key);
+      return `<div class="sport-dot ${pts > 0 ? 'has-points' : ''}" style="background:${s.color}" title="${s.name}: ${pts}pts">${s.icon}</div>`;
+    }).join('');
+
+    const rowHtml = `
+      <div class="lb-row ${rankClass}" data-player="${entry.name}" onclick="togglePlayer('${entry.name}')">
+        <div class="lb-rank">${rankLabel}</div>
+        <div class="lb-name">${entry.name}</div>
+        <div class="lb-sport-dots">${dots}</div>
+        <div class="lb-bar-wrap"><div class="lb-bar" style="width:${(entry.total/max*100).toFixed(1)}%"></div></div>
+        <div class="lb-score">${entry.total}</div>
+      </div>
+      <div class="edit-panel ${openPlayer === entry.name ? 'open' : ''}" id="panel-${entry.name}">
+        ${renderEditPanel(entry.name)}
+      </div>
+    `;
+    container.insertAdjacentHTML('beforeend', rowHtml);
+  });
+}
+
+function renderEditPanel(player) {
+  const sportsToShow = activeFilter === 'all' ? SPORTS : SPORTS.filter(s => s.key === activeFilter);
+
+  const sections = sportsToShow.map(sport => {
+    const d = data[player][sport.key];
+    const fields = sport.fields.map(f => {
+      const val = d[f.key] || '';
+      if (f.type === 'select') {
+        const opts = f.options.map(o => `<option value="${o}" ${val === o ? 'selected' : ''}>${o || '-- Select --'}</option>`).join('');
+        return `<div class="field"><label>${f.label}</label><select onchange="updateField('${player}','${sport.key}','${f.key}',this.value)">${opts}</select></div>`;
+      }
+      return `<div class="field"><label>${f.label}</label><input type="${f.type}" value="${val}" placeholder="${f.type === 'number' ? '0' : ''}" oninput="updateField('${player}','${sport.key}','${f.key}',this.value)"></div>`;
+    }).join('');
+
+    const total = sport.calcTotal(d);
+    return `
+      <div class="sport-block" style="--sport-color:${sport.color}">
+        <div class="sport-name">${sport.icon} ${sport.name}</div>
+        <div class="field-group">${fields}</div>
+        <div class="sport-total">
+          <label>Event Total</label>
+          <div class="sport-total-val" id="stotal-${player}-${sport.key}">${total}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <div class="edit-player-name">${player}'s Scorecard</div>
+    <div class="sport-sections">${sections}</div>
+  `;
+}
+
+function updateField(player, sportKey, fieldKey, value) {
+  data[player][sportKey][fieldKey] = value;
+  saveData();
+  // Update sport total inline
+  const sport = SPORTS.find(s => s.key === sportKey);
+  if (sport) {
+    const el = document.getElementById(`stotal-${player}-${sportKey}`);
+    if (el) el.textContent = sport.calcTotal(data[player][sportKey]);
+  }
+  // Re-render leaderboard to update scores/bars
+  renderLeaderboard();
+  renderStats();
+}
+
+function togglePlayer(player) {
+  openPlayer = openPlayer === player ? null : player;
+  renderLeaderboard();
+}
+
+function renderGuide() {
+  const container = document.getElementById('guideGrid');
+  container.innerHTML = SPORTS.map(sport => {
+    const rules = sport.scoring.map(r => `<div class="guide-rule"><span>${r.label}</span><span class="pts">${r.pts} pts</span></div>`).join('');
+    return `<div class="guide-card" style="--sport-color:${sport.color}"><div class="guide-sport">${sport.icon} ${sport.name}</div>${rules}</div>`;
+  }).join('');
+}
+
+function exportData() {
+  let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
+  let downloadAnchorNode = document.createElement('a');
+  downloadAnchorNode.setAttribute("href", dataStr);
+  downloadAnchorNode.setAttribute("download", "benchwarmers_draft_data.json");
+  document.body.appendChild(downloadAnchorNode);
+  downloadAnchorNode.click();
+  downloadAnchorNode.remove();
+}
+
+function importData(event) {
+  let file = event.target.files[0];
+  if (!file) return;
+  let reader = new FileReader();
+  reader.onload = function(e) {
+      try {
+          let importedData = JSON.parse(e.target.result);
+          if (typeof importedData === 'object') {
+              data = importedData;
+              saveData();
+              renderStats();
+              renderLeaderboard();
+              renderGuide();
+              alert("Draft data imported successfully!");
+          }
+      } catch (err) {
+          alert("Invalid JSON file.");
+      }
+  };
+  reader.readAsText(file);
+}
+
+// Tab clicks
+document.getElementById('sportTabs').addEventListener('click', e => {
+  const tab = e.target.closest('.tab');
+  if (!tab) return;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  activeFilter = tab.dataset.filter;
+  openPlayer = null;
+  renderLeaderboard();
+});
+
+// Init
+renderStats();
+renderLeaderboard();
+renderGuide();
+</script>
+</body>
+</html>
