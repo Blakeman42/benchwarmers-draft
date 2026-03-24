@@ -684,16 +684,44 @@ const SPORTS = [
 const PLAYERS = ['Blake', 'Branden', 'Braxton', 'Brody', 'Cash', 'Daxton', 'Jaxon', 'Jayden', 'Porter', 'Steven'];
 
 // Load or init data
-let data = JSON.parse(localStorage.getItem('benchwarmers_data_v2') || 'null') || {};
-PLAYERS.forEach(p => {
-  if (!data[p]) data[p] = {};
-  SPORTS.forEach(s => {
-    if (!data[p][s.key]) data[p][s.key] = {};
-  });
-});
-
+let data = {};
 let activeFilter = 'all';
 let openPlayer = null;
+
+function buildDefaultData() {
+  let defaultData = {};
+  PLAYERS.forEach(p => {
+    defaultData[p] = {};
+    SPORTS.forEach(s => {
+      defaultData[p][s.key] = {};
+    });
+  });
+  return defaultData;
+}
+
+// Auto-Fetch Logic: Tries to grab the live cloud file first
+async function initData() {
+  try {
+    // 1. Try to fetch the live data from GitHub
+    // A cache-buster is added so mobile browsers don't load a stale, older version
+    const response = await fetch('./data.json?v=' + new Date().getTime());
+    
+    if (response.ok) {
+      data = await response.json();
+    } else {
+      // 2. If no data.json is found on GitHub yet, fall back to local storage
+      data = JSON.parse(localStorage.getItem('benchwarmers_data_v2') || 'null') || buildDefaultData();
+    }
+  } catch (error) {
+    // 3. If running locally on your computer, use local storage
+    data = JSON.parse(localStorage.getItem('benchwarmers_data_v2') || 'null') || buildDefaultData();
+  }
+  
+  // Render the UI once data is loaded
+  renderStats();
+  renderLeaderboard();
+  renderGuide();
+}
 
 function saveData() {
   localStorage.setItem('benchwarmers_data_v2', JSON.stringify(data));
@@ -868,9 +896,8 @@ document.getElementById('sportTabs').addEventListener('click', e => {
 });
 
 // Init
-renderStats();
-renderLeaderboard();
-renderGuide();
+// Init
+initData();
 </script>
 </body>
 </html>
