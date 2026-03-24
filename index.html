@@ -487,12 +487,98 @@
 
   select option { background: var(--card); }
   
-  /* Export/Import Actions */
-  .header-actions {
+  /* Export/Import Actions (Moved to bottom) */
+  .footer-actions {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-top: 20px;
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+  }
+  .footer-actions:hover {
+    opacity: 1;
+  }
+
+  /* =========================================
+     MOBILE RESPONSIVE FIXES
+     ========================================= */
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px 12px;
+    }
+    
+    h1 {
+      font-size: 48px;
+    }
+    
+    .stats-bar {
+      gap: 10px;
+    }
+    .stat-pill {
+      flex: 1 1 calc(33% - 10px);
+      padding: 10px 8px;
+    }
+    .stat-pill .stat-val {
+      font-size: 22px;
+    }
+
+    .sport-tabs {
+      gap: 6px;
+    }
+    .tab {
+      padding: 6px 12px;
+      font-size: 10px;
+    }
+
+    /* LEADERBOARD ROW FIX: Guarantees the score stays on screen */
+    .lb-row {
+      gap: 12px;
+      padding: 16px 12px;
+    }
+    .lb-rank {
+      width: 25px;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .lb-name {
+      font-size: 18px;
+      flex: 1 1 0%; /* Allows the name to take up middle space */
+      min-width: 0; /* CRITICAL FIX: Stops flexbox from pushing the score off screen */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    /* Hide the horizontal bar AND the dots to save space on mobile */
+    .lb-bar-wrap {
+      display: none; 
+    }
+    .lb-sport-dots {
+      display: none; 
+    }
+    
+    /* Keep the score locked to the right */
+    .lb-score {
+      width: auto;
+      font-size: 24px;
+      text-align: right;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+
+    /* Fix Editor Panel Overflow */
+    .edit-panel {
+      padding: 20px 16px;
+    }
+    .sport-sections {
+      grid-template-columns: 1fr; /* Force 1 column on mobile */
+    }
+    .edit-player-name {
+      font-size: 26px;
+    }
   }
 </style>
 </head>
@@ -502,12 +588,7 @@
   <header>
     <div class="league-tag">⚡ Fantasy Draft League</div>
     <h1>Benchwarmers</h1>
-    <div class="subtitle">2025 Draft Point Tracker</div>
-    <div class="header-actions">
-        <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importData(event)">
-        <button class="save-btn btn-outline" style="margin: 0; padding: 8px 16px; font-size: 14px;" onclick="document.getElementById('importFile').click()">Import JSON</button>
-        <button class="save-btn" style="margin: 0; padding: 8px 16px; font-size: 14px;" onclick="exportData()">Export JSON</button>
-    </div>
+    <div class="subtitle">2026 Draft Point Tracker</div>
   </header>
 
   <div class="stats-bar" id="statsBar"></div>
@@ -532,6 +613,12 @@
   <div class="guide-section">
     <div class="section-label">Scoring Guide</div>
     <div class="guide-grid" id="guideGrid"></div>
+  </div>
+
+  <div class="footer-actions">
+    <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importData(event)">
+    <button class="save-btn btn-outline" style="margin: 0; padding: 6px 16px; font-size: 12px;" onclick="document.getElementById('importFile').click()">Import JSON</button>
+    <button class="save-btn" style="margin: 0; padding: 6px 16px; font-size: 12px;" onclick="exportData()">Export JSON</button>
   </div>
 </div>
 
@@ -703,7 +790,6 @@ function buildDefaultData() {
 async function initData() {
   try {
     // 1. Try to fetch the live data from GitHub
-    // 1. Try to fetch the live data from GitHub
     const response = await fetch('./benchwarmers_draft_data.json?v=' + new Date().getTime());
     
     if (response.ok) {
@@ -752,9 +838,9 @@ function renderStats() {
   document.getElementById('statsBar').innerHTML = `
     <div class="stat-pill"><div class="stat-val">${PLAYERS.length}</div><div class="stat-label">Players</div></div>
     <div class="stat-pill"><div class="stat-val">${SPORTS.length}</div><div class="stat-label">Events</div></div>
-    <div class="stat-pill"><div class="stat-val">${sportsActive}</div><div class="stat-label">Scored Events</div></div>
-    <div class="stat-pill"><div class="stat-val">${totalPts}</div><div class="stat-label">Total Points</div></div>
-    <div class="stat-pill"><div class="stat-val" style="color:var(--accent)">${totalPts > 0 ? leader : '--'}</div><div class="stat-label">Current Leader</div></div>
+    <div class="stat-pill"><div class="stat-val">${sportsActive}</div><div class="stat-label">Scored</div></div>
+    <div class="stat-pill"><div class="stat-val">${totalPts}</div><div class="stat-label">Total Pts</div></div>
+    <div class="stat-pill"><div class="stat-val" style="color:var(--accent)">${totalPts > 0 ? leader : '--'}</div><div class="stat-label">Leader</div></div>
   `;
 }
 
@@ -895,7 +981,6 @@ document.getElementById('sportTabs').addEventListener('click', e => {
   renderLeaderboard();
 });
 
-// Init
 // Init
 initData();
 </script>
