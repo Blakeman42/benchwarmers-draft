@@ -703,8 +703,8 @@ function buildDefaultData() {
 async function initData() {
   try {
     // 1. Try to fetch the live data from GitHub
-    // A cache-buster is added so mobile browsers don't load a stale, older version
-    const response = await fetch('./data.json?v=' + new Date().getTime());
+    // 1. Try to fetch the live data from GitHub
+    const response = await fetch('./benchwarmers_draft_data.json?v=' + new Date().getTime());
     
     if (response.ok) {
       data = await response.json();
