@@ -657,16 +657,16 @@ const SPORTS = [
     ],
     scoring: [
       { label: 'Combined Finish Placement', pts: '10 down to 1' },
-      { label: 'Longshot makes cut', pts: '+2' },
-      { label: 'Longshot Top 10', pts: '+5' },
-      { label: 'Per Hole-in-One', pts: '+5' }
+      { label: 'Longshot makes cut', pts: '+1' },
+      { label: 'Longshot Top 10', pts: '+3' },
+      { label: 'Per Hole-in-One', pts: '+3' }
     ],
     calcTotal: (d) => {
       let place = parseInt(d.placement) || 0;
       let placePts = (place >= 1 && place <= 10) ? (11 - place) : 0;
-      let cutPts = d.cut === 'Yes' ? 2 : 0;
-      let top10Pts = d.top10 === 'Yes' ? 5 : 0;
-      let hioPts = (parseInt(d.hio) || 0) * 5;
+      let cutPts = d.cut === 'Yes' ? 1 : 0;
+      let top10Pts = d.top10 === 'Yes' ? 3 : 0;
+      let hioPts = (parseInt(d.hio) || 0) * 3;
       return placePts + cutPts + top10Pts + hioPts;
     }
   },
