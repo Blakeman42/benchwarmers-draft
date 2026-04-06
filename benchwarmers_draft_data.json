@@ -1,10 +1,13 @@
 {
   "Blake": {
     "march_madness": {
-      "placement": "8",
+      "placement": "1",
       "upsets": "1"
     },
-    "masters": {},
+    "masters": {
+      "cut": "No",
+      "top10": "No"
+    },
     "kentucky_derby": {},
     "nhl": {},
     "nba": {},
@@ -13,7 +16,7 @@
   },
   "Branden": {
     "march_madness": {
-      "placement": "5",
+      "placement": "7",
       "upsets": "1"
     },
     "masters": {},
@@ -37,7 +40,7 @@
   },
   "Brody": {
     "march_madness": {
-      "placement": "7",
+      "placement": "8",
       "upsets": "0"
     },
     "masters": {},
@@ -61,7 +64,7 @@
   },
   "Daxton": {
     "march_madness": {
-      "placement": "1",
+      "placement": "2",
       "upsets": "2"
     },
     "masters": {},
@@ -73,7 +76,7 @@
   },
   "Jaxon": {
     "march_madness": {
-      "placement": "2",
+      "placement": "3",
       "upsets": "1"
     },
     "masters": {},
@@ -109,7 +112,7 @@
   },
   "Steven": {
     "march_madness": {
-      "placement": "3",
+      "placement": "6",
       "upsets": "2"
     },
     "masters": {},
