@@ -5,8 +5,9 @@
       "upsets": "1"
     },
     "masters": {
-      "cut": "No",
-      "top10": "No"
+      "cut": "Yes",
+      "top10": "No",
+      "placement": "4"
     },
     "kentucky_derby": {},
     "nhl": {},
@@ -19,7 +20,9 @@
       "placement": "7",
       "upsets": "1"
     },
-    "masters": {},
+    "masters": {
+      "placement": "3"
+    },
     "kentucky_derby": {},
     "nhl": {},
     "nba": {},
@@ -31,7 +34,9 @@
       "placement": "9",
       "upsets": "1"
     },
-    "masters": {},
+    "masters": {
+      "placement": "8"
+    },
     "kentucky_derby": {},
     "nhl": {},
     "nba": {},
@@ -43,7 +48,9 @@
       "placement": "8",
       "upsets": "0"
     },
-    "masters": {},
+    "masters": {
+      "placement": "6"
+    },
     "kentucky_derby": {},
     "nhl": {},
     "nba": {},
@@ -55,7 +62,9 @@
       "placement": "4",
       "upsets": "1"
     },
-    "masters": {},
+    "masters": {
+      "placement": "5"
+    },
     "kentucky_derby": {},
     "nhl": {},
     "nba": {},
@@ -67,7 +76,10 @@
       "placement": "2",
       "upsets": "2"
     },
-    "masters": {},
+    "masters": {
+      "placement": "10",
+      "cut": "Yes"
+    },
     "kentucky_derby": {},
     "nhl": {},
     "nba": {},
@@ -79,7 +91,10 @@
       "placement": "3",
       "upsets": "1"
     },
-    "masters": {},
+    "masters": {
+      "placement": "7",
+      "cut": "Yes"
+    },
     "kentucky_derby": {},
     "nhl": {},
     "nba": {},
@@ -91,7 +106,10 @@
       "placement": "5",
       "upsets": "1"
     },
-    "masters": {},
+    "masters": {
+      "placement": "1",
+      "cut": "Yes"
+    },
     "kentucky_derby": {},
     "nhl": {},
     "nba": {},
@@ -103,7 +121,11 @@
       "placement": "10",
       "upsets": "0"
     },
-    "masters": {},
+    "masters": {
+      "placement": "2",
+      "cut": "Yes",
+      "hio": "1"
+    },
     "kentucky_derby": {},
     "nhl": {},
     "nba": {},
@@ -115,7 +137,9 @@
       "placement": "6",
       "upsets": "2"
     },
-    "masters": {},
+    "masters": {
+      "placement": "9"
+    },
     "kentucky_derby": {},
     "nhl": {},
     "nba": {},
