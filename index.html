@@ -502,83 +502,23 @@
     opacity: 1;
   }
 
-  /* =========================================
-     MOBILE RESPONSIVE FIXES
-     ========================================= */
   @media (max-width: 768px) {
-    .container {
-      padding: 20px 12px;
-    }
-    
-    h1 {
-      font-size: 48px;
-    }
-    
-    .stats-bar {
-      gap: 10px;
-    }
-    .stat-pill {
-      flex: 1 1 calc(33% - 10px);
-      padding: 10px 8px;
-    }
-    .stat-pill .stat-val {
-      font-size: 22px;
-    }
-
-    .sport-tabs {
-      gap: 6px;
-    }
-    .tab {
-      padding: 6px 12px;
-      font-size: 10px;
-    }
-
-    /* LEADERBOARD ROW FIX: Guarantees the score stays on screen */
-    .lb-row {
-      gap: 12px;
-      padding: 16px 12px;
-    }
-    .lb-rank {
-      width: 25px;
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-    .lb-name {
-      font-size: 18px;
-      flex: 1 1 0%; /* Allows the name to take up middle space */
-      min-width: 0; /* CRITICAL FIX: Stops flexbox from pushing the score off screen */
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    
-    /* Hide the horizontal bar AND the dots to save space on mobile */
-    .lb-bar-wrap {
-      display: none; 
-    }
-    .lb-sport-dots {
-      display: none; 
-    }
-    
-    /* Keep the score locked to the right */
-    .lb-score {
-      width: auto;
-      font-size: 24px;
-      text-align: right;
-      flex-shrink: 0;
-      margin-left: auto;
-    }
-
-    /* Fix Editor Panel Overflow */
-    .edit-panel {
-      padding: 20px 16px;
-    }
-    .sport-sections {
-      grid-template-columns: 1fr; /* Force 1 column on mobile */
-    }
-    .edit-player-name {
-      font-size: 26px;
-    }
+    .container { padding: 20px 12px; }
+    h1 { font-size: 48px; }
+    .stats-bar { gap: 10px; }
+    .stat-pill { flex: 1 1 calc(33% - 10px); padding: 10px 8px; }
+    .stat-pill .stat-val { font-size: 22px; }
+    .sport-tabs { gap: 6px; }
+    .tab { padding: 6px 12px; font-size: 10px; }
+    .lb-row { gap: 12px; padding: 16px 12px; }
+    .lb-rank { width: 25px; font-size: 20px; flex-shrink: 0; }
+    .lb-name { font-size: 18px; flex: 1 1 0%; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .lb-bar-wrap { display: none; }
+    .lb-sport-dots { display: none; }
+    .lb-score { width: auto; font-size: 24px; text-align: right; flex-shrink: 0; margin-left: auto; }
+    .edit-panel { padding: 20px 16px; }
+    .sport-sections { grid-template-columns: 1fr; }
+    .edit-player-name { font-size: 26px; }
   }
 </style>
 </head>
@@ -676,21 +616,43 @@ const SPORTS = [
     icon: '🐎',
     color: 'var(--sport3)',
     fields: [
-      { key: 'finish', label: 'Horse Finish', type: 'select', options: ['Unplaced', '1st', '2nd', '3rd'] },
+      { key: 'league_rank', label: 'League Rank (1=Best, 10=Worst)', type: 'select', options: ['0 (None)', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'] },
+      { key: 'real_finish', label: 'Real-World Finish (1-20)', type: 'number' },
       { key: 'odds', label: 'Morning-Line Odds', type: 'number' },
     ],
     scoring: [
-      { label: '1st Place', pts: '10 + (Odds/2)' },
-      { label: '2nd Place', pts: '7 + (Odds/2)' },
-      { label: '3rd Place', pts: '5 + (Odds/2)' }
+      { label: 'Base Points (League Rank)', pts: '10 down to 1' },
+      { label: 'Real Finish: 1st (Win)', pts: '+ (Odds/3)' },
+      { label: 'Real Finish: 2nd (Place)', pts: '+ (Odds/5)' },
+      { label: 'Real Finish: 3rd (Show)', pts: '+ (Odds/8)' },
+      { label: 'Real Finish: 4th–8th', pts: '+ (Odds/20)' },
+      { label: 'Real Finish: 9th–14th', pts: '+ (Odds/30)' },
+      { label: 'Real Finish: 15th+/DNF', pts: '+ (Odds/40)' }
     ],
     calcTotal: (d) => {
-      const finish = d.finish;
-      const odds = parseFloat(d.odds) || 0;
-      if (finish === '1st') return 10 + (odds / 2);
-      if (finish === '2nd') return 7 + (odds / 2);
-      if (finish === '3rd') return 5 + (odds / 2);
-      return 0;
+      let leagueRank = parseInt(d.league_rank) || 0;
+      if (leagueRank === 0) return 0;
+      let basePoints = 11 - leagueRank;
+      let realFinish = parseInt(d.real_finish) || 0;
+      let odds = parseFloat(d.odds) || 0;
+      let bonus = 0;
+
+      if (realFinish === 1) {
+        bonus = odds / 3;
+      } else if (realFinish === 2) {
+        bonus = odds / 5;
+      } else if (realFinish === 3) {
+        bonus = odds / 8;
+      } else if (realFinish >= 4 && realFinish <= 8) {
+        bonus = odds / 20;
+      } else if (realFinish >= 9 && realFinish <= 14) {
+        bonus = odds / 30;
+      } else {
+        bonus = odds / 40;
+      }
+
+      let total = basePoints + Math.round(bonus);
+      return Math.max(1, total);
     }
   },
   {
@@ -770,7 +732,6 @@ const SPORTS = [
 
 const PLAYERS = ['Blake', 'Branden', 'Braxton', 'Brody', 'Cash', 'Daxton', 'Jaxon', 'Jayden', 'Porter', 'Steven'];
 
-// Load or init data
 let data = {};
 let activeFilter = 'all';
 let openPlayer = null;
@@ -786,24 +747,17 @@ function buildDefaultData() {
   return defaultData;
 }
 
-// Auto-Fetch Logic: Tries to grab the live cloud file first
 async function initData() {
   try {
-    // 1. Try to fetch the live data from GitHub
     const response = await fetch('./benchwarmers_draft_data.json?v=' + new Date().getTime());
-    
     if (response.ok) {
       data = await response.json();
     } else {
-      // 2. If no data.json is found on GitHub yet, fall back to local storage
       data = JSON.parse(localStorage.getItem('benchwarmers_data_v2') || 'null') || buildDefaultData();
     }
   } catch (error) {
-    // 3. If running locally on your computer, use local storage
     data = JSON.parse(localStorage.getItem('benchwarmers_data_v2') || 'null') || buildDefaultData();
   }
-  
-  // Render the UI once data is loaded
   renderStats();
   renderLeaderboard();
   renderGuide();
@@ -848,15 +802,12 @@ function renderLeaderboard() {
   const scored = PLAYERS.map(p => ({ name: p, total: getPlayerTotal(p, activeFilter) }));
   scored.sort((a, b) => b.total - a.total);
   const max = Math.max(...scored.map(s => s.total), 1);
-
   const container = document.getElementById('lbRows');
   container.innerHTML = '';
 
   scored.forEach((entry, i) => {
     const rankClass = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : '';
     const rankLabel = i === 0 ? '1' : i === 1 ? '2' : i === 2 ? '3' : i + 1;
-
-    // Sport dots
     const dots = SPORTS.map(s => {
       const pts = getSportTotal(entry.name, s.key);
       return `<div class="sport-dot ${pts > 0 ? 'has-points' : ''}" style="background:${s.color}" title="${s.name}: ${pts}pts">${s.icon}</div>`;
@@ -880,7 +831,6 @@ function renderLeaderboard() {
 
 function renderEditPanel(player) {
   const sportsToShow = activeFilter === 'all' ? SPORTS : SPORTS.filter(s => s.key === activeFilter);
-
   const sections = sportsToShow.map(sport => {
     const d = data[player][sport.key];
     const fields = sport.fields.map(f => {
@@ -904,7 +854,6 @@ function renderEditPanel(player) {
       </div>
     `;
   }).join('');
-
   return `
     <div class="edit-player-name">${player}'s Scorecard</div>
     <div class="sport-sections">${sections}</div>
@@ -914,13 +863,11 @@ function renderEditPanel(player) {
 function updateField(player, sportKey, fieldKey, value) {
   data[player][sportKey][fieldKey] = value;
   saveData();
-  // Update sport total inline
   const sport = SPORTS.find(s => s.key === sportKey);
   if (sport) {
     const el = document.getElementById(`stotal-${player}-${sportKey}`);
     if (el) el.textContent = sport.calcTotal(data[player][sportKey]);
   }
-  // Re-render leaderboard to update scores/bars
   renderLeaderboard();
   renderStats();
 }
@@ -970,7 +917,6 @@ function importData(event) {
   reader.readAsText(file);
 }
 
-// Tab clicks
 document.getElementById('sportTabs').addEventListener('click', e => {
   const tab = e.target.closest('.tab');
   if (!tab) return;
@@ -981,7 +927,6 @@ document.getElementById('sportTabs').addEventListener('click', e => {
   renderLeaderboard();
 });
 
-// Init
 initData();
 </script>
 </body>
