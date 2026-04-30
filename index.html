@@ -37,7 +37,6 @@
     overflow-x: hidden;
   }
 
-  /* Background grid */
   body::before {
     content: '';
     position: fixed;
@@ -58,11 +57,9 @@
     padding: 32px 24px;
   }
 
-  /* Header */
   header {
     text-align: center;
     margin-bottom: 48px;
-    animation: fadeDown 0.6s ease both;
   }
 
   .league-tag {
@@ -96,14 +93,12 @@
     text-transform: uppercase;
   }
 
-  /* Sport tabs */
   .sport-tabs {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 40px;
-    animation: fadeUp 0.6s 0.15s ease both;
   }
 
   .tab {
@@ -119,46 +114,9 @@
     border-radius: 2px;
     transition: all 0.2s;
     position: relative;
-    overflow: hidden;
   }
 
-  .tab::before {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--tab-color, var(--accent));
-    transform: scaleX(0);
-    transition: transform 0.2s;
-  }
-
-  .tab:hover { color: var(--text); border-color: var(--tab-color, var(--accent)); }
-  .tab:hover::before { transform: scaleX(1); }
   .tab.active { color: var(--text); border-color: var(--tab-color, var(--accent)); background: rgba(255,255,255,0.04); }
-  .tab.active::before { transform: scaleX(1); }
-
-  /* Leaderboard */
-  .leaderboard {
-    margin-bottom: 40px;
-    animation: fadeUp 0.6s 0.25s ease both;
-  }
-
-  .section-label {
-    font-size: 10px;
-    letter-spacing: 4px;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
 
   .lb-row {
     display: flex;
@@ -169,41 +127,20 @@
     border: 1px solid var(--border);
     border-radius: 4px;
     margin-bottom: 6px;
-    transition: all 0.25s;
     cursor: pointer;
     position: relative;
-    overflow: hidden;
   }
-
-  .lb-row::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--row-accent, var(--muted));
-    transition: width 0.3s;
-  }
-
-  .lb-row:hover { border-color: rgba(245,197,24,0.3); background: rgba(245,197,24,0.03); }
-  .lb-row:hover::before { width: 5px; }
-
-  .lb-row.rank-1 { --row-accent: var(--accent); border-color: rgba(245,197,24,0.25); }
-  .lb-row.rank-2 { --row-accent: #c0c0c0; }
-  .lb-row.rank-3 { --row-accent: #cd7f32; }
 
   .lb-rank {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 28px;
-    color: var(--row-accent, var(--muted));
     width: 40px;
     text-align: center;
-    flex-shrink: 0;
   }
 
   .lb-name {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 22px;
-    letter-spacing: 1px;
     flex: 1;
   }
 
@@ -219,40 +156,16 @@
     height: 100%;
     background: var(--row-accent, var(--muted));
     border-radius: 3px;
-    transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+    transition: width 0.8s ease;
   }
 
   .lb-score {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 26px;
-    color: var(--row-accent, var(--text));
     width: 60px;
     text-align: right;
-    flex-shrink: 0;
   }
 
-  .lb-sport-dots {
-    display: flex;
-    gap: 4px;
-    flex-shrink: 0;
-  }
-
-  .sport-dot {
-    width: 20px;
-    height: 20px;
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 9px;
-    color: rgba(0,0,0,0.8);
-    font-weight: bold;
-    opacity: 0.35;
-    transition: opacity 0.2s;
-  }
-  .sport-dot.has-points { opacity: 1; }
-
-  /* Edit Panel */
   .edit-panel {
     display: none;
     background: var(--surface);
@@ -260,22 +173,8 @@
     border-radius: 6px;
     padding: 28px;
     margin-bottom: 6px;
-    animation: expandDown 0.3s ease;
   }
   .edit-panel.open { display: block; }
-
-  @keyframes expandDown {
-    from { opacity: 0; transform: translateY(-8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .edit-player-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
-    color: var(--accent);
-    margin-bottom: 24px;
-    letter-spacing: 2px;
-  }
 
   .sport-sections {
     display: grid;
@@ -286,18 +185,8 @@
   .sport-block {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 4px;
     padding: 18px;
     position: relative;
-    overflow: hidden;
-  }
-
-  .sport-block::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--sport-color, var(--accent));
   }
 
   .sport-name {
@@ -306,7 +195,6 @@
     text-transform: uppercase;
     color: var(--sport-color, var(--accent));
     margin-bottom: 14px;
-    font-weight: 500;
   }
 
   .field-group {
@@ -315,67 +203,8 @@
     gap: 10px;
   }
 
-  .field {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .field label {
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .field input, .field select {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    padding: 7px 10px;
-    border-radius: 3px;
-    outline: none;
-    transition: border-color 0.2s;
-    width: 100%;
-  }
-
-  .field input:focus, .field select:focus {
-    border-color: var(--accent);
-  }
-
-  .field input[type="number"] { -moz-appearance: textfield; }
-  .field input[type="number"]::-webkit-outer-spin-button,
-  .field input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
-
-  .sport-total {
-    margin-top: 12px;
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .sport-total label {
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .sport-total-val {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
-    color: var(--sport-color, var(--accent));
-  }
-
-  /* Scoring guide */
-  .guide-section {
-    margin-top: 40px;
-    animation: fadeUp 0.6s 0.35s ease both;
-  }
+  .field label { font-size: 9px; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 4px; }
+  .field input, .field select { background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 7px; border-radius: 3px; width: 100%; outline: none; }
 
   .guide-grid {
     display: grid;
@@ -383,142 +212,19 @@
     gap: 16px;
   }
 
-  .guide-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 16px;
-    position: relative;
-    overflow: hidden;
-  }
+  .guide-card { background: var(--card); border: 1px solid var(--border); padding: 16px; }
+  .guide-rule { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); padding: 4px 0; }
+  .guide-rule span.pts { color: var(--text); }
 
-  .guide-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--sport-color, var(--accent));
-  }
-
-  .guide-sport {
-    font-size: 9px;
-    letter-spacing: 3px;
-    color: var(--sport-color, var(--accent));
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-
-  .guide-rule {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 11px;
-    color: var(--muted);
-    padding: 4px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-  }
-  .guide-rule:last-child { border-bottom: none; }
-  .guide-rule span.pts {
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  /* Buttons */
   .save-btn {
-    display: block;
-    margin: 20px 0 0;
     padding: 12px 32px;
     background: var(--accent);
     color: #000;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 16px;
-    letter-spacing: 3px;
     border: none;
-    border-radius: 3px;
     cursor: pointer;
-    transition: all 0.2s;
     text-transform: uppercase;
-  }
-  .save-btn:hover { background: var(--accent2); transform: translateY(-1px); }
-  .save-btn:active { transform: translateY(0); }
-  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
-  .btn-outline:hover { background: var(--surface); border-color: var(--accent); }
-
-  /* Stats bar */
-  .stats-bar {
-    display: flex;
-    gap: 24px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 40px;
-    animation: fadeUp 0.6s 0.2s ease both;
-  }
-
-  .stat-pill {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 10px 20px;
-    text-align: center;
-  }
-
-  .stat-pill .stat-val {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    color: var(--accent);
-    line-height: 1;
-  }
-
-  .stat-pill .stat-label {
-    font-size: 9px;
     letter-spacing: 2px;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-top: 2px;
-  }
-
-  .hint {
-    font-size: 10px;
-    color: var(--muted);
-    text-align: center;
-    margin-bottom: 16px;
-    letter-spacing: 1px;
-  }
-
-  select option { background: var(--card); }
-  
-  /* Export/Import Actions (Moved to bottom) */
-  .footer-actions {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 60px;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    opacity: 0.4;
-    transition: opacity 0.3s ease;
-  }
-  .footer-actions:hover {
-    opacity: 1;
-  }
-
-  @media (max-width: 768px) {
-    .container { padding: 20px 12px; }
-    h1 { font-size: 48px; }
-    .stats-bar { gap: 10px; }
-    .stat-pill { flex: 1 1 calc(33% - 10px); padding: 10px 8px; }
-    .stat-pill .stat-val { font-size: 22px; }
-    .sport-tabs { gap: 6px; }
-    .tab { padding: 6px 12px; font-size: 10px; }
-    .lb-row { gap: 12px; padding: 16px 12px; }
-    .lb-rank { width: 25px; font-size: 20px; flex-shrink: 0; }
-    .lb-name { font-size: 18px; flex: 1 1 0%; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .lb-bar-wrap { display: none; }
-    .lb-sport-dots { display: none; }
-    .lb-score { width: auto; font-size: 24px; text-align: right; flex-shrink: 0; margin-left: auto; }
-    .edit-panel { padding: 20px 16px; }
-    .sport-sections { grid-template-columns: 1fr; }
-    .edit-player-name { font-size: 26px; }
   }
 </style>
 </head>
@@ -531,10 +237,10 @@
     <div class="subtitle">2026 Draft Point Tracker</div>
   </header>
 
-  <div class="stats-bar" id="statsBar"></div>
+  <div class="stats-bar" id="statsBar" style="display: flex; gap: 20px; justify-content: center; margin-bottom: 40px;"></div>
 
   <div class="sport-tabs" id="sportTabs">
-    <button class="tab active" data-filter="all" style="--tab-color: var(--accent)">All Sports</button>
+    <button class="tab active" data-filter="all">All Sports</button>
     <button class="tab" data-filter="march_madness" style="--tab-color: var(--sport1)">🏀 March Madness</button>
     <button class="tab" data-filter="masters" style="--tab-color: var(--sport2)">⛳ The Masters</button>
     <button class="tab" data-filter="kentucky_derby" style="--tab-color: var(--sport3)">🐎 Kentucky Derby</button>
@@ -545,20 +251,15 @@
   </div>
 
   <div class="leaderboard" id="leaderboard">
-    <div class="section-label">Live Standings — click a player to edit</div>
-    <div class="hint">Changes save automatically to your browser</div>
     <div id="lbRows"></div>
   </div>
 
-  <div class="guide-section">
-    <div class="section-label">Scoring Guide</div>
+  <div class="guide-section" style="margin-top: 40px;">
     <div class="guide-grid" id="guideGrid"></div>
   </div>
 
-  <div class="footer-actions">
-    <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importData(event)">
-    <button class="save-btn btn-outline" style="margin: 0; padding: 6px 16px; font-size: 12px;" onclick="document.getElementById('importFile').click()">Import JSON</button>
-    <button class="save-btn" style="margin: 0; padding: 6px 16px; font-size: 12px;" onclick="exportData()">Export JSON</button>
+  <div class="footer-actions" style="display: flex; justify-content: center; gap: 10px; margin-top: 40px;">
+    <button class="save-btn" onclick="exportData()">Export JSON</button>
   </div>
 </div>
 
@@ -570,18 +271,16 @@ const SPORTS = [
     icon: '🏀',
     color: 'var(--sport1)',
     fields: [
-      { key: 'placement', label: 'Placement (1=1st, 10=10th)', type: 'select', options: ['0 (None)', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'] },
+      { key: 'placement', label: 'Placement (1-10)', type: 'select', options: ['0','1','2','3','4','5','6','7','8','9','10'] },
       { key: 'upsets', label: 'Upset Credits', type: 'number' },
     ],
     scoring: [
-      { label: '1st Place', pts: '10' }, 
-      { label: '10th Place', pts: '1' },
-      { label: 'Per correct double-digit upset', pts: '+1' },
+      { label: 'Placement', pts: '10 down to 1' },
+      { label: 'Upset Credits', pts: '+1' },
     ],
     calcTotal: (d) => {
-      let place = parseInt(d.placement) || 0;
-      let placePts = (place >= 1 && place <= 10) ? (11 - place) : 0;
-      return placePts + (parseInt(d.upsets) || 0);
+      let p = parseInt(d.placement) || 0;
+      return (p > 0 ? 11 - p : 0) + (parseInt(d.upsets) || 0);
     }
   },
   {
@@ -590,24 +289,20 @@ const SPORTS = [
     icon: '⛳',
     color: 'var(--sport2)',
     fields: [
-      { key: 'placement', label: 'Combined Placement (1=1st, 10=10th)', type: 'select', options: ['0 (None)', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'] },
-      { key: 'cut', label: 'Longshot Made Cut?', type: 'select', options: ['No', 'Yes'] },
-      { key: 'top10', label: 'Longshot Top 10?', type: 'select', options: ['No', 'Yes'] },
-      { key: 'hio', label: 'Total Hole-in-Ones', type: 'number' }
+      { key: 'placement', label: 'Combined Rank (1-10)', type: 'select', options: ['0','1','2','3','4','5','6','7','8','9','10'] },
+      { key: 'cut', label: 'Cut Made?', type: 'select', options: ['No','Yes'] },
+      { key: 'top10', label: 'Top 10?', type: 'select', options: ['No','Yes'] },
+      { key: 'hio', label: 'Hole-in-Ones', type: 'number' }
     ],
     scoring: [
-      { label: 'Combined Finish Placement', pts: '10 down to 1' },
-      { label: 'Longshot makes cut', pts: '+1' },
-      { label: 'Longshot Top 10', pts: '+3' },
-      { label: 'Per Hole-in-One', pts: '+3' }
+      { label: 'Placement', pts: '10 down to 1' },
+      { label: 'Cut Made', pts: '+1' },
+      { label: 'Top 10', pts: '+3' },
+      { label: 'HIO', pts: '+3' }
     ],
     calcTotal: (d) => {
-      let place = parseInt(d.placement) || 0;
-      let placePts = (place >= 1 && place <= 10) ? (11 - place) : 0;
-      let cutPts = d.cut === 'Yes' ? 1 : 0;
-      let top10Pts = d.top10 === 'Yes' ? 3 : 0;
-      let hioPts = (parseInt(d.hio) || 0) * 3;
-      return placePts + cutPts + top10Pts + hioPts;
+      let p = parseInt(d.placement) || 0;
+      return (p > 0 ? 11 - p : 0) + (d.cut === 'Yes' ? 1 : 0) + (d.top10 === 'Yes' ? 3 : 0) + ((parseInt(d.hio) || 0) * 3);
     }
   },
   {
@@ -616,43 +311,35 @@ const SPORTS = [
     icon: '🐎',
     color: 'var(--sport3)',
     fields: [
-      { key: 'league_rank', label: 'League Rank (1=Best, 10=Worst)', type: 'select', options: ['0 (None)', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'] },
-      { key: 'real_finish', label: 'Real-World Finish (1-20)', type: 'number' },
-      { key: 'odds', label: 'Morning-Line Odds', type: 'number' },
+      { key: 'league_rank', label: 'League Rank (1-10)', type: 'select', options: ['0','1','2','3','4','5','6','7','8','9','10'] },
+      { key: 'real_finish', label: 'Real Race Finish (1-20)', type: 'number' },
+      { key: 'odds', label: 'MLO Odds', type: 'number' },
     ],
     scoring: [
-      { label: 'Base Points (League Rank)', pts: '10 down to 1' },
-      { label: 'Real Finish: 1st (Win)', pts: '+ (Odds/3)' },
-      { label: 'Real Finish: 2nd (Place)', pts: '+ (Odds/5)' },
-      { label: 'Real Finish: 3rd (Show)', pts: '+ (Odds/8)' },
-      { label: 'Real Finish: 4th–8th', pts: '+ (Odds/20)' },
-      { label: 'Real Finish: 9th–14th', pts: '+ (Odds/30)' },
-      { label: 'Real Finish: 15th+/DNF', pts: '+ (Odds/40)' }
+      { label: 'Base Points', pts: '10 down to 1' },
+      { label: '1st (Win)', pts: '+ 3 + (Odds/4)' },
+      { label: '2nd (Place)', pts: '+ 2 + (Odds/5)' },
+      { label: '3rd (Show)', pts: '+ 1 + (Odds/8)' },
+      { label: '4th–8th', pts: '+ (Odds/20)' },
+      { label: '9th–14th', pts: '+ (Odds/30)' },
+      { label: '15th+/DNF', pts: '+ (Odds/40)' }
     ],
     calcTotal: (d) => {
-      let leagueRank = parseInt(d.league_rank) || 0;
-      if (leagueRank === 0) return 0;
-      let basePoints = 11 - leagueRank;
-      let realFinish = parseInt(d.real_finish) || 0;
-      let odds = parseFloat(d.odds) || 0;
-      let bonus = 0;
+      let lr = parseInt(d.league_rank) || 0;
+      if (lr === 0) return 0;
+      let base = 11 - lr;
+      let rf = parseInt(d.real_finish) || 0;
+      let o = parseFloat(d.odds) || 0;
+      let b = 0;
 
-      if (realFinish === 1) {
-        bonus = odds / 3;
-      } else if (realFinish === 2) {
-        bonus = odds / 5;
-      } else if (realFinish === 3) {
-        bonus = odds / 8;
-      } else if (realFinish >= 4 && realFinish <= 8) {
-        bonus = odds / 20;
-      } else if (realFinish >= 9 && realFinish <= 14) {
-        bonus = odds / 30;
-      } else {
-        bonus = odds / 40;
-      }
+      if (rf === 1) b = 3 + (o / 4);
+      else if (rf === 2) b = 2 + (o / 5);
+      else if (rf === 3) b = 1 + (o / 8);
+      else if (rf >= 4 && rf <= 8) b = o / 20;
+      else if (rf >= 9 && rf <= 14) b = o / 30;
+      else b = o / 40;
 
-      let total = basePoints + Math.round(bonus);
-      return Math.max(1, total);
+      return Math.max(1, base + Math.round(b));
     }
   },
   {
@@ -661,18 +348,16 @@ const SPORTS = [
     icon: '🏒',
     color: 'var(--sport4)',
     fields: [
-      { key: 'placement', label: 'Placement (1=1st, 10=10th)', type: 'select', options: ['0 (None)', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'] },
-      { key: 'otGames', label: 'OT Games Played', type: 'number' },
+      { key: 'placement', label: 'Placement (1-10)', type: 'select', options: ['0','1','2','3','4','5','6','7','8','9','10'] },
+      { key: 'ot', label: 'OT Games', type: 'number' },
     ],
     scoring: [
-      { label: '1st Place', pts: '10' }, 
-      { label: '10th Place', pts: '1' },
-      { label: 'Per OT game played', pts: '+1' },
+      { label: 'Placement', pts: '10 to 1' },
+      { label: 'OT Played', pts: '+1' },
     ],
     calcTotal: (d) => {
-      let place = parseInt(d.placement) || 0;
-      let placePts = (place >= 1 && place <= 10) ? (11 - place) : 0;
-      return placePts + (parseInt(d.otGames) || 0);
+      let p = parseInt(d.placement) || 0;
+      return (p > 0 ? 11 - p : 0) + (parseInt(d.ot) || 0);
     }
   },
   {
@@ -681,18 +366,16 @@ const SPORTS = [
     icon: '🏆',
     color: 'var(--sport5)',
     fields: [
-      { key: 'placement', label: 'Placement (1=1st, 10=10th)', type: 'select', options: ['0 (None)', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'] },
-      { key: 'comebacks', label: 'Series Comebacks', type: 'number' },
+      { key: 'placement', label: 'Placement (1-10)', type: 'select', options: ['0','1','2','3','4','5','6','7','8','9','10'] },
+      { key: 'comebacks', label: 'Comebacks', type: 'number' },
     ],
     scoring: [
-      { label: '1st Place', pts: '10' }, 
-      { label: '10th Place', pts: '1' },
-      { label: 'Per series comeback', pts: '+1' },
+      { label: 'Placement', pts: '10 to 1' },
+      { label: 'Comebacks', pts: '+3' },
     ],
     calcTotal: (d) => {
-      let place = parseInt(d.placement) || 0;
-      let placePts = (place >= 1 && place <= 10) ? (11 - place) : 0;
-      return placePts + ((parseInt(d.comebacks) || 0) * 3);
+      let p = parseInt(d.placement) || 0;
+      return (p > 0 ? 11 - p : 0) + ((parseInt(d.comebacks) || 0) * 3);
     }
   },
   {
@@ -701,15 +384,12 @@ const SPORTS = [
     icon: '⚽',
     color: 'var(--sport6)',
     fields: [
-      { key: 'team', label: 'Pot 1 Team Assigned', type: 'text' },
-      { key: 'wins', label: 'Games Won', type: 'number' },
+      { key: 'wins', label: 'Wins', type: 'number' },
     ],
     scoring: [
-      { label: 'Per game won by assigned team', pts: '+1' },
+      { label: 'Per Win', pts: '+1' },
     ],
-    calcTotal: (d) => {
-      return parseInt(d.wins) || 0;
-    }
+    calcTotal: (d) => parseInt(d.wins) || 0
   },
   {
     key: 'draft_day',
@@ -717,217 +397,94 @@ const SPORTS = [
     icon: '🎉',
     color: 'var(--sport7)',
     fields: [
-      { key: 'placement', label: 'Final Event Placement', type: 'select', options: ['0 (None)', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'] },
+      { key: 'placement', label: 'Rank (1-10)', type: 'select', options: ['0','1','2','3','4','5','6','7','8','9','10'] },
     ],
     scoring: [
-      { label: '1st Place', pts: '10' }, 
-      { label: '10th Place', pts: '1' },
+      { label: 'Placement', pts: '10 to 1' },
     ],
     calcTotal: (d) => {
-      let place = parseInt(d.placement) || 0;
-      return (place >= 1 && place <= 10) ? (11 - place) : 0;
+      let p = parseInt(d.placement) || 0;
+      return p > 0 ? 11 - p : 0;
     }
   }
 ];
 
 const PLAYERS = ['Blake', 'Branden', 'Braxton', 'Brody', 'Cash', 'Daxton', 'Jaxon', 'Jayden', 'Porter', 'Steven'];
+let data = JSON.parse(localStorage.getItem('benchwarmers_v3') || '{}');
+if (Object.keys(data).length === 0) {
+  PLAYERS.forEach(p => { data[p] = {}; SPORTS.forEach(s => data[p][s.key] = {}); });
+}
 
-let data = {};
 let activeFilter = 'all';
 let openPlayer = null;
 
-function buildDefaultData() {
-  let defaultData = {};
-  PLAYERS.forEach(p => {
-    defaultData[p] = {};
-    SPORTS.forEach(s => {
-      defaultData[p][s.key] = {};
-    });
-  });
-  return defaultData;
-}
-
-async function initData() {
-  try {
-    const response = await fetch('./benchwarmers_draft_data.json?v=' + new Date().getTime());
-    if (response.ok) {
-      data = await response.json();
-    } else {
-      data = JSON.parse(localStorage.getItem('benchwarmers_data_v2') || 'null') || buildDefaultData();
-    }
-  } catch (error) {
-    data = JSON.parse(localStorage.getItem('benchwarmers_data_v2') || 'null') || buildDefaultData();
-  }
-  renderStats();
-  renderLeaderboard();
-  renderGuide();
-}
-
-function saveData() {
-  localStorage.setItem('benchwarmers_data_v2', JSON.stringify(data));
-}
-
-function getPlayerTotal(player, sportFilter) {
-  let total = 0;
-  SPORTS.forEach(sport => {
-    if (sportFilter === 'all' || sportFilter === sport.key) {
-      total += sport.calcTotal(data[player][sport.key]);
-    }
-  });
-  return total;
-}
-
-function getSportTotal(player, sportKey) {
-  const sport = SPORTS.find(s => s.key === sportKey);
-  return sport ? sport.calcTotal(data[player][sportKey]) : 0;
-}
-
-function renderStats() {
-  const totals = PLAYERS.map(p => getPlayerTotal(p, 'all'));
-  const max = Math.max(...totals);
-  const totalPts = totals.reduce((a, b) => a + b, 0);
-  const leader = PLAYERS[totals.indexOf(max)];
-  const sportsActive = SPORTS.filter(s => PLAYERS.some(p => getSportTotal(p, s.key) > 0)).length;
-
-  document.getElementById('statsBar').innerHTML = `
-    <div class="stat-pill"><div class="stat-val">${PLAYERS.length}</div><div class="stat-label">Players</div></div>
-    <div class="stat-pill"><div class="stat-val">${SPORTS.length}</div><div class="stat-label">Events</div></div>
-    <div class="stat-pill"><div class="stat-val">${sportsActive}</div><div class="stat-label">Scored</div></div>
-    <div class="stat-pill"><div class="stat-val">${totalPts}</div><div class="stat-label">Total Pts</div></div>
-    <div class="stat-pill"><div class="stat-val" style="color:var(--accent)">${totalPts > 0 ? leader : '--'}</div><div class="stat-label">Leader</div></div>
-  `;
-}
-
 function renderLeaderboard() {
-  const scored = PLAYERS.map(p => ({ name: p, total: getPlayerTotal(p, activeFilter) }));
-  scored.sort((a, b) => b.total - a.total);
-  const max = Math.max(...scored.map(s => s.total), 1);
   const container = document.getElementById('lbRows');
   container.innerHTML = '';
+  const scores = PLAYERS.map(p => {
+    let total = 0;
+    SPORTS.forEach(s => { if (activeFilter === 'all' || activeFilter === s.key) total += s.calcTotal(data[p][s.key]); });
+    return { name: p, total };
+  }).sort((a,b) => b.total - a.total);
 
-  scored.forEach((entry, i) => {
-    const rankClass = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : '';
-    const rankLabel = i === 0 ? '1' : i === 1 ? '2' : i === 2 ? '3' : i + 1;
-    const dots = SPORTS.map(s => {
-      const pts = getSportTotal(entry.name, s.key);
-      return `<div class="sport-dot ${pts > 0 ? 'has-points' : ''}" style="background:${s.color}" title="${s.name}: ${pts}pts">${s.icon}</div>`;
-    }).join('');
+  const max = Math.max(...scores.map(s => s.total), 1);
 
-    const rowHtml = `
-      <div class="lb-row ${rankClass}" data-player="${entry.name}" onclick="togglePlayer('${entry.name}')">
-        <div class="lb-rank">${rankLabel}</div>
-        <div class="lb-name">${entry.name}</div>
-        <div class="lb-sport-dots">${dots}</div>
-        <div class="lb-bar-wrap"><div class="lb-bar" style="width:${(entry.total/max*100).toFixed(1)}%"></div></div>
-        <div class="lb-score">${entry.total}</div>
+  scores.forEach((s, i) => {
+    container.insertAdjacentHTML('beforeend', `
+      <div class="lb-row" onclick="togglePlayer('${s.name}')">
+        <div class="lb-rank">${i+1}</div>
+        <div class="lb-name">${s.name}</div>
+        <div class="lb-bar-wrap"><div class="lb-bar" style="width:${(s.total/max*100)}%"></div></div>
+        <div class="lb-score">${s.total}</div>
       </div>
-      <div class="edit-panel ${openPlayer === entry.name ? 'open' : ''}" id="panel-${entry.name}">
-        ${renderEditPanel(entry.name)}
+      <div class="edit-panel ${openPlayer === s.name ? 'open' : ''}">
+        <div class="sport-sections">${renderFields(s.name)}</div>
       </div>
-    `;
-    container.insertAdjacentHTML('beforeend', rowHtml);
+    `);
   });
+  renderStats(scores);
 }
 
-function renderEditPanel(player) {
-  const sportsToShow = activeFilter === 'all' ? SPORTS : SPORTS.filter(s => s.key === activeFilter);
-  const sections = sportsToShow.map(sport => {
-    const d = data[player][sport.key];
-    const fields = sport.fields.map(f => {
-      const val = d[f.key] || '';
+function renderFields(player) {
+  return SPORTS.map(s => {
+    const fields = s.fields.map(f => {
+      const val = data[player][s.key][f.key] || '';
       if (f.type === 'select') {
-        const opts = f.options.map(o => `<option value="${o}" ${val === o ? 'selected' : ''}>${o || '-- Select --'}</option>`).join('');
-        return `<div class="field"><label>${f.label}</label><select onchange="updateField('${player}','${sport.key}','${f.key}',this.value)">${opts}</select></div>`;
+        const opts = f.options.map(o => `<option value="${o}" ${val === o ? 'selected' : ''}>${o}</option>`).join('');
+        return `<div class="field"><label>${f.label}</label><select onchange="update('${player}','${s.key}','${f.key}',this.value)">${opts}</select></div>`;
       }
-      return `<div class="field"><label>${f.label}</label><input type="${f.type}" value="${val}" placeholder="${f.type === 'number' ? '0' : ''}" oninput="updateField('${player}','${sport.key}','${f.key}',this.value)"></div>`;
+      return `<div class="field"><label>${f.label}</label><input type="${f.type}" value="${val}" oninput="update('${player}','${s.key}','${f.key}',this.value)"></div>`;
     }).join('');
-
-    const total = sport.calcTotal(d);
-    return `
-      <div class="sport-block" style="--sport-color:${sport.color}">
-        <div class="sport-name">${sport.icon} ${sport.name}</div>
-        <div class="field-group">${fields}</div>
-        <div class="sport-total">
-          <label>Event Total</label>
-          <div class="sport-total-val" id="stotal-${player}-${sport.key}">${total}</div>
-        </div>
-      </div>
-    `;
+    return `<div class="sport-block" style="--sport-color:${s.color}"><div class="sport-name">${s.name}</div><div class="field-group">${fields}</div></div>`;
   }).join('');
-  return `
-    <div class="edit-player-name">${player}'s Scorecard</div>
-    <div class="sport-sections">${sections}</div>
-  `;
 }
 
-function updateField(player, sportKey, fieldKey, value) {
-  data[player][sportKey][fieldKey] = value;
-  saveData();
-  const sport = SPORTS.find(s => s.key === sportKey);
-  if (sport) {
-    const el = document.getElementById(`stotal-${player}-${sportKey}`);
-    if (el) el.textContent = sport.calcTotal(data[player][sportKey]);
-  }
-  renderLeaderboard();
-  renderStats();
-}
-
-function togglePlayer(player) {
-  openPlayer = openPlayer === player ? null : player;
-  renderLeaderboard();
-}
-
-function renderGuide() {
-  const container = document.getElementById('guideGrid');
-  container.innerHTML = SPORTS.map(sport => {
-    const rules = sport.scoring.map(r => `<div class="guide-rule"><span>${r.label}</span><span class="pts">${r.pts} pts</span></div>`).join('');
-    return `<div class="guide-card" style="--sport-color:${sport.color}"><div class="guide-sport">${sport.icon} ${sport.name}</div>${rules}</div>`;
+function update(p, sk, fk, v) { data[p][sk][fk] = v; localStorage.setItem('benchwarmers_v3', JSON.stringify(data)); renderLeaderboard(); }
+function togglePlayer(p) { openPlayer = openPlayer === p ? null : p; renderLeaderboard(); }
+function renderStats(s) { document.getElementById('statsBar').innerHTML = `Total League Pts: ${s.reduce((a,b)=>a+b.total,0)} | Leader: ${s[0].name}`; }
+function renderGuide() { 
+  document.getElementById('guideGrid').innerHTML = SPORTS.map(s => {
+    const rules = s.scoring.map(r => `<div class="guide-rule"><span>${r.label}</span><span class="pts">${r.pts}</span></div>`).join('');
+    return `<div class="guide-card" style="--sport-color:${s.color}"><div style="color:${s.color}; font-size:10px; margin-bottom:10px;">${s.name}</div>${rules}</div>`;
   }).join('');
 }
 
 function exportData() {
-  let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
-  let downloadAnchorNode = document.createElement('a');
-  downloadAnchorNode.setAttribute("href", dataStr);
-  downloadAnchorNode.setAttribute("download", "benchwarmers_draft_data.json");
-  document.body.appendChild(downloadAnchorNode);
-  downloadAnchorNode.click();
-  downloadAnchorNode.remove();
-}
-
-function importData(event) {
-  let file = event.target.files[0];
-  if (!file) return;
-  let reader = new FileReader();
-  reader.onload = function(e) {
-      try {
-          let importedData = JSON.parse(e.target.result);
-          if (typeof importedData === 'object') {
-              data = importedData;
-              saveData();
-              renderStats();
-              renderLeaderboard();
-              renderGuide();
-              alert("Draft data imported successfully!");
-          }
-      } catch (err) {
-          alert("Invalid JSON file.");
-      }
-  };
-  reader.readAsText(file);
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type: "application/json"});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = "draft_data.json"; a.click();
 }
 
 document.getElementById('sportTabs').addEventListener('click', e => {
-  const tab = e.target.closest('.tab');
-  if (!tab) return;
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  tab.classList.add('active');
-  activeFilter = tab.dataset.filter;
-  openPlayer = null;
-  renderLeaderboard();
+  if (e.target.classList.contains('tab')) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    e.target.classList.add('active');
+    activeFilter = e.target.dataset.filter;
+    renderLeaderboard();
+  }
 });
 
-initData();
+renderLeaderboard();
+renderGuide();
 </script>
 </body>
 </html>
