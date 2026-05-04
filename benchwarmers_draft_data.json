@@ -14,8 +14,13 @@
       "real_finish": "1",
       "odds": "25"
     },
-    "nhl": {},
-    "nba": {},
+    "nhl": {
+      "placement": "1",
+      "otGames": "2"
+    },
+    "nba": {
+      "placement": "7"
+    },
     "world_cup": {},
     "draft_day": {}
   },
@@ -32,8 +37,13 @@
       "real_finish": "2",
       "odds": "6"
     },
-    "nhl": {},
-    "nba": {},
+    "nhl": {
+      "placement": "9",
+      "otGames": "1"
+    },
+    "nba": {
+      "placement": "1"
+    },
     "world_cup": {},
     "draft_day": {}
   },
@@ -50,8 +60,13 @@
       "real_finish": "5",
       "odds": "25"
     },
-    "nhl": {},
-    "nba": {},
+    "nhl": {
+      "placement": "8",
+      "otGames": "1"
+    },
+    "nba": {
+      "placement": "1"
+    },
     "world_cup": {},
     "draft_day": {}
   },
@@ -68,8 +83,13 @@
       "real_finish": "12",
       "odds": "18"
     },
-    "nhl": {},
-    "nba": {},
+    "nhl": {
+      "placement": "6",
+      "otGames": "4"
+    },
+    "nba": {
+      "placement": "1"
+    },
     "world_cup": {},
     "draft_day": {}
   },
@@ -86,8 +106,13 @@
       "real_finish": "16",
       "odds": "47"
     },
-    "nhl": {},
-    "nba": {},
+    "nhl": {
+      "placement": "9",
+      "otGames": "1"
+    },
+    "nba": {
+      "placement": "1"
+    },
     "world_cup": {},
     "draft_day": {}
   },
@@ -105,8 +130,13 @@
       "real_finish": "15",
       "odds": "44"
     },
-    "nhl": {},
-    "nba": {},
+    "nhl": {
+      "placement": "3",
+      "otGames": "1"
+    },
+    "nba": {
+      "placement": "9"
+    },
     "world_cup": {},
     "draft_day": {}
   },
@@ -124,8 +154,13 @@
       "real_finish": "19",
       "odds": "46"
     },
-    "nhl": {},
-    "nba": {},
+    "nhl": {
+      "placement": "7",
+      "otGames": "2"
+    },
+    "nba": {
+      "placement": "1"
+    },
     "world_cup": {},
     "draft_day": {}
   },
@@ -143,8 +178,13 @@
       "real_finish": "8",
       "odds": "26"
     },
-    "nhl": {},
-    "nba": {},
+    "nhl": {
+      "placement": "5",
+      "otGames": "2"
+    },
+    "nba": {
+      "placement": "10"
+    },
     "world_cup": {},
     "draft_day": {}
   },
@@ -163,8 +203,14 @@
       "real_finish": "3",
       "odds": "77"
     },
-    "nhl": {},
-    "nba": {},
+    "nhl": {
+      "placement": "4",
+      "otGames": "1"
+    },
+    "nba": {
+      "placement": "1",
+      "comebacks": "1"
+    },
     "world_cup": {},
     "draft_day": {}
   },
@@ -181,8 +227,13 @@
       "real_finish": "4",
       "odds": "7"
     },
-    "nhl": {},
-    "nba": {},
+    "nhl": {
+      "placement": "1",
+      "otGames": "2"
+    },
+    "nba": {
+      "placement": "7"
+    },
     "world_cup": {},
     "draft_day": {}
   }
