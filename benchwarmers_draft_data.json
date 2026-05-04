@@ -9,7 +9,11 @@
       "top10": "No",
       "placement": "4"
     },
-    "kentucky_derby": {},
+    "kentucky_derby": {
+      "league_rank": "1",
+      "real_finish": "1",
+      "odds": "25"
+    },
     "nhl": {},
     "nba": {},
     "world_cup": {},
@@ -23,7 +27,11 @@
     "masters": {
       "placement": "3"
     },
-    "kentucky_derby": {},
+    "kentucky_derby": {
+      "league_rank": "2",
+      "real_finish": "2",
+      "odds": "6"
+    },
     "nhl": {},
     "nba": {},
     "world_cup": {},
@@ -37,7 +45,11 @@
     "masters": {
       "placement": "8"
     },
-    "kentucky_derby": {},
+    "kentucky_derby": {
+      "league_rank": "5",
+      "real_finish": "5",
+      "odds": "25"
+    },
     "nhl": {},
     "nba": {},
     "world_cup": {},
@@ -51,7 +63,11 @@
     "masters": {
       "placement": "6"
     },
-    "kentucky_derby": {},
+    "kentucky_derby": {
+      "league_rank": "7",
+      "real_finish": "12",
+      "odds": "18"
+    },
     "nhl": {},
     "nba": {},
     "world_cup": {},
@@ -65,7 +81,11 @@
     "masters": {
       "placement": "5"
     },
-    "kentucky_derby": {},
+    "kentucky_derby": {
+      "league_rank": "9",
+      "real_finish": "16",
+      "odds": "47"
+    },
     "nhl": {},
     "nba": {},
     "world_cup": {},
@@ -80,7 +100,11 @@
       "placement": "10",
       "cut": "Yes"
     },
-    "kentucky_derby": {},
+    "kentucky_derby": {
+      "league_rank": "8",
+      "real_finish": "15",
+      "odds": "44"
+    },
     "nhl": {},
     "nba": {},
     "world_cup": {},
@@ -95,7 +119,11 @@
       "placement": "7",
       "cut": "Yes"
     },
-    "kentucky_derby": {},
+    "kentucky_derby": {
+      "league_rank": "10",
+      "real_finish": "19",
+      "odds": "46"
+    },
     "nhl": {},
     "nba": {},
     "world_cup": {},
@@ -110,7 +138,11 @@
       "placement": "1",
       "cut": "Yes"
     },
-    "kentucky_derby": {},
+    "kentucky_derby": {
+      "league_rank": "6",
+      "real_finish": "8",
+      "odds": "26"
+    },
     "nhl": {},
     "nba": {},
     "world_cup": {},
@@ -126,7 +158,11 @@
       "cut": "Yes",
       "hio": "1"
     },
-    "kentucky_derby": {},
+    "kentucky_derby": {
+      "league_rank": "3",
+      "real_finish": "3",
+      "odds": "77"
+    },
     "nhl": {},
     "nba": {},
     "world_cup": {},
@@ -140,7 +176,11 @@
     "masters": {
       "placement": "9"
     },
-    "kentucky_derby": {},
+    "kentucky_derby": {
+      "league_rank": "4",
+      "real_finish": "4",
+      "odds": "7"
+    },
     "nhl": {},
     "nba": {},
     "world_cup": {},
