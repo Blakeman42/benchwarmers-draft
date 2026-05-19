@@ -15,8 +15,8 @@
       "odds": "25"
     },
     "nhl": {
-      "placement": "1",
-      "otGames": "2"
+      "placement": "3",
+      "otGames": "3"
     },
     "nba": {
       "placement": "7"
@@ -38,11 +38,11 @@
       "odds": "6"
     },
     "nhl": {
-      "placement": "9",
-      "otGames": "1"
+      "placement": "5",
+      "otGames": "3"
     },
     "nba": {
-      "placement": "1"
+      "placement": "3"
     },
     "world_cup": {},
     "draft_day": {}
@@ -61,11 +61,11 @@
       "odds": "25"
     },
     "nhl": {
-      "placement": "8",
-      "otGames": "1"
+      "placement": "4",
+      "otGames": "2"
     },
     "nba": {
-      "placement": "1"
+      "placement": "4"
     },
     "world_cup": {},
     "draft_day": {}
@@ -84,11 +84,11 @@
       "odds": "18"
     },
     "nhl": {
-      "placement": "6",
-      "otGames": "4"
+      "placement": "8",
+      "otGames": "2"
     },
     "nba": {
-      "placement": "1"
+      "placement": "6"
     },
     "world_cup": {},
     "draft_day": {}
@@ -107,11 +107,11 @@
       "odds": "47"
     },
     "nhl": {
-      "placement": "9",
+      "placement": "10",
       "otGames": "1"
     },
     "nba": {
-      "placement": "1"
+      "placement": "4"
     },
     "world_cup": {},
     "draft_day": {}
@@ -131,7 +131,7 @@
       "odds": "44"
     },
     "nhl": {
-      "placement": "3",
+      "placement": "6",
       "otGames": "1"
     },
     "nba": {
@@ -155,11 +155,12 @@
       "odds": "46"
     },
     "nhl": {
-      "placement": "7",
+      "placement": "9",
       "otGames": "2"
     },
     "nba": {
-      "placement": "1"
+      "placement": "1",
+      "comebacks": "1"
     },
     "world_cup": {},
     "draft_day": {}
@@ -179,7 +180,7 @@
       "odds": "26"
     },
     "nhl": {
-      "placement": "5",
+      "placement": "7",
       "otGames": "2"
     },
     "nba": {
@@ -204,8 +205,8 @@
       "odds": "77"
     },
     "nhl": {
-      "placement": "4",
-      "otGames": "1"
+      "placement": "2",
+      "otGames": "2"
     },
     "nba": {
       "placement": "1",
@@ -229,7 +230,7 @@
     },
     "nhl": {
       "placement": "1",
-      "otGames": "2"
+      "otGames": "3"
     },
     "nba": {
       "placement": "7"
