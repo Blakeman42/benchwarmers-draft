@@ -15,7 +15,7 @@
       "odds": "25"
     },
     "nhl": {
-      "placement": "3",
+      "placement": "5",
       "otGames": "3"
     },
     "nba": {
@@ -38,11 +38,11 @@
       "odds": "6"
     },
     "nhl": {
-      "placement": "5",
-      "otGames": "3"
+      "placement": "2",
+      "otGames": "5"
     },
     "nba": {
-      "placement": "3"
+      "placement": "1"
     },
     "world_cup": {},
     "draft_day": {}
@@ -61,7 +61,7 @@
       "odds": "25"
     },
     "nhl": {
-      "placement": "4",
+      "placement": "2",
       "otGames": "2"
     },
     "nba": {
@@ -85,10 +85,10 @@
     },
     "nhl": {
       "placement": "8",
-      "otGames": "2"
+      "otGames": "4"
     },
     "nba": {
-      "placement": "6"
+      "placement": "3"
     },
     "world_cup": {},
     "draft_day": {}
@@ -111,7 +111,7 @@
       "otGames": "1"
     },
     "nba": {
-      "placement": "4"
+      "placement": "6"
     },
     "world_cup": {},
     "draft_day": {}
@@ -205,11 +205,11 @@
       "odds": "77"
     },
     "nhl": {
-      "placement": "2",
+      "placement": "4",
       "otGames": "2"
     },
     "nba": {
-      "placement": "1",
+      "placement": "4",
       "comebacks": "1"
     },
     "world_cup": {},
