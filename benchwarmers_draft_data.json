@@ -21,7 +21,9 @@
     "nba": {
       "placement": "7"
     },
-    "world_cup": {},
+    "world_cup": {
+      "team": "Argentina"
+    },
     "draft_day": {}
   },
   "Branden": {
@@ -39,12 +41,14 @@
     },
     "nhl": {
       "placement": "2",
-      "otGames": "5"
+      "otGames": "7"
     },
     "nba": {
       "placement": "1"
     },
-    "world_cup": {},
+    "world_cup": {
+      "team": "Netherlands"
+    },
     "draft_day": {}
   },
   "Braxton": {
@@ -61,13 +65,15 @@
       "odds": "25"
     },
     "nhl": {
-      "placement": "2",
+      "placement": "3",
       "otGames": "2"
     },
     "nba": {
-      "placement": "4"
+      "placement": "2"
     },
-    "world_cup": {},
+    "world_cup": {
+      "team": "Portugal"
+    },
     "draft_day": {}
   },
   "Brody": {
@@ -88,9 +94,11 @@
       "otGames": "4"
     },
     "nba": {
-      "placement": "3"
+      "placement": "4"
     },
-    "world_cup": {},
+    "world_cup": {
+      "team": "Germany"
+    },
     "draft_day": {}
   },
   "Cash": {
@@ -113,7 +121,9 @@
     "nba": {
       "placement": "6"
     },
-    "world_cup": {},
+    "world_cup": {
+      "team": "Spain"
+    },
     "draft_day": {}
   },
   "Daxton": {
@@ -137,7 +147,9 @@
     "nba": {
       "placement": "9"
     },
-    "world_cup": {},
+    "world_cup": {
+      "team": "France"
+    },
     "draft_day": {}
   },
   "Jaxon": {
@@ -159,10 +171,12 @@
       "otGames": "2"
     },
     "nba": {
-      "placement": "1",
-      "comebacks": "1"
+      "placement": "5",
+      "comebacks": "01"
     },
-    "world_cup": {},
+    "world_cup": {
+      "team": "Brazil"
+    },
     "draft_day": {}
   },
   "Jayden": {
@@ -186,7 +200,9 @@
     "nba": {
       "placement": "10"
     },
-    "world_cup": {},
+    "world_cup": {
+      "team": "Mexico"
+    },
     "draft_day": {}
   },
   "Porter": {
@@ -209,10 +225,12 @@
       "otGames": "2"
     },
     "nba": {
-      "placement": "4",
+      "placement": "7",
       "comebacks": "1"
     },
-    "world_cup": {},
+    "world_cup": {
+      "team": "England"
+    },
     "draft_day": {}
   },
   "Steven": {
@@ -221,21 +239,4 @@
       "upsets": "2"
     },
     "masters": {
-      "placement": "9"
-    },
-    "kentucky_derby": {
-      "league_rank": "4",
-      "real_finish": "4",
-      "odds": "7"
-    },
-    "nhl": {
-      "placement": "1",
-      "otGames": "3"
-    },
-    "nba": {
-      "placement": "7"
-    },
-    "world_cup": {},
-    "draft_day": {}
-  }
-}
+      "placement": "9
