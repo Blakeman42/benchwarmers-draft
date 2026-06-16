@@ -171,7 +171,7 @@
       "otGames": "2"
     },
     "nba": {
-      "placement": "5",
+      "placement": "3",
       "comebacks": "01"
     },
     "world_cup": {
@@ -225,7 +225,7 @@
       "otGames": "2"
     },
     "nba": {
-      "placement": "7",
+      "placement": "5",
       "comebacks": "1"
     },
     "world_cup": {
@@ -239,4 +239,23 @@
       "upsets": "2"
     },
     "masters": {
-      "placement": "9
+      "placement": "9"
+    },
+    "kentucky_derby": {
+      "league_rank": "4",
+      "real_finish": "4",
+      "odds": "7"
+    },
+    "nhl": {
+      "placement": "1",
+      "otGames": "5"
+    },
+    "nba": {
+      "placement": "7"
+    },
+    "world_cup": {
+      "team": "Belgium"
+    },
+    "draft_day": {}
+  }
+}
