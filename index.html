@@ -695,7 +695,7 @@ const SPORTS = [
     calcTotal: (d) => {
       let place = parseInt(d.placement) || 0;
       let placePts = (place >= 1 && place <= 10) ? (11 - place) : 0;
-      return placePts + ((parseInt(d.comebacks) || 0) * 3);
+      return placePts + ((parseInt(d.comebacks) || 0) * 1);
     }
   },
   {
