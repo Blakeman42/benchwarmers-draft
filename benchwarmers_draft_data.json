@@ -22,7 +22,8 @@
       "placement": "7"
     },
     "world_cup": {
-      "team": "Argentina"
+      "team": "Argentina",
+      "wins": "3"
     },
     "draft_day": {}
   },
@@ -47,7 +48,8 @@
       "placement": "1"
     },
     "world_cup": {
-      "team": "Netherlands"
+      "team": "Netherlands",
+      "wins": "2"
     },
     "draft_day": {}
   },
@@ -72,7 +74,8 @@
       "placement": "2"
     },
     "world_cup": {
-      "team": "Portugal"
+      "team": "Portugal",
+      "wins": "1"
     },
     "draft_day": {}
   },
@@ -97,7 +100,8 @@
       "placement": "4"
     },
     "world_cup": {
-      "team": "Germany"
+      "team": "Germany",
+      "wins": "2"
     },
     "draft_day": {}
   },
@@ -122,7 +126,8 @@
       "placement": "6"
     },
     "world_cup": {
-      "team": "Spain"
+      "team": "Spain",
+      "wins": "2"
     },
     "draft_day": {}
   },
@@ -148,7 +153,8 @@
       "placement": "9"
     },
     "world_cup": {
-      "team": "France"
+      "team": "France",
+      "wins": "3"
     },
     "draft_day": {}
   },
@@ -175,7 +181,8 @@
       "comebacks": "01"
     },
     "world_cup": {
-      "team": "Brazil"
+      "team": "Brazil",
+      "wins": "2"
     },
     "draft_day": {}
   },
@@ -201,7 +208,8 @@
       "placement": "10"
     },
     "world_cup": {
-      "team": "Mexico"
+      "team": "Mexico",
+      "wins": "3"
     },
     "draft_day": {}
   },
@@ -229,7 +237,8 @@
       "comebacks": "1"
     },
     "world_cup": {
-      "team": "England"
+      "team": "England",
+      "wins": "2"
     },
     "draft_day": {}
   },
@@ -254,7 +263,8 @@
       "placement": "7"
     },
     "world_cup": {
-      "team": "Belgium"
+      "team": "Belgium",
+      "wins": "1"
     },
     "draft_day": {}
   }
