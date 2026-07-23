@@ -23,7 +23,7 @@
     },
     "world_cup": {
       "team": "Argentina",
-      "wins": "3"
+      "wins": "9"
     },
     "draft_day": {}
   },
@@ -49,7 +49,7 @@
     },
     "world_cup": {
       "team": "Netherlands",
-      "wins": "2"
+      "wins": "3"
     },
     "draft_day": {}
   },
@@ -75,7 +75,7 @@
     },
     "world_cup": {
       "team": "Portugal",
-      "wins": "1"
+      "wins": "3"
     },
     "draft_day": {}
   },
@@ -101,7 +101,7 @@
     },
     "world_cup": {
       "team": "Germany",
-      "wins": "2"
+      "wins": "3"
     },
     "draft_day": {}
   },
@@ -127,7 +127,7 @@
     },
     "world_cup": {
       "team": "Spain",
-      "wins": "2"
+      "wins": "11"
     },
     "draft_day": {}
   },
@@ -154,7 +154,7 @@
     },
     "world_cup": {
       "team": "France",
-      "wins": "3"
+      "wins": "7"
     },
     "draft_day": {}
   },
@@ -182,7 +182,7 @@
     },
     "world_cup": {
       "team": "Brazil",
-      "wins": "2"
+      "wins": "4"
     },
     "draft_day": {}
   },
@@ -209,7 +209,7 @@
     },
     "world_cup": {
       "team": "Mexico",
-      "wins": "3"
+      "wins": "5"
     },
     "draft_day": {}
   },
@@ -238,7 +238,7 @@
     },
     "world_cup": {
       "team": "England",
-      "wins": "2"
+      "wins": "6"
     },
     "draft_day": {}
   },
@@ -264,7 +264,7 @@
     },
     "world_cup": {
       "team": "Belgium",
-      "wins": "1"
+      "wins": "4"
     },
     "draft_day": {}
   }
